@@ -53,5 +53,5 @@ Este é um **protótipo**. Os dois modelos são arquiteturas pré-definidas. Par
 
 ## Autores
 
-- Mateus Paupério ([@mateuspauperio](https://github.com/mateuspauperio))
-- [Nome do amigo]
+- Mateus Pauperio ([@mateuspauperio](https://github.com/mateuspauperio))
+- Kaique Rios
