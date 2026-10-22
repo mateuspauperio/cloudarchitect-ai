@@ -100,9 +100,9 @@ php -S localhost:8000
 
 ## 👥 Autores
 
-Desenvolvido durante o **DevFest**:
+Desenvolvido para o **DevFest**:
 
 * **Mateus Pauperio** — [@mateuspauperio](https://github.com/mateuspauperio)
-* **Kaique Rios** — [@kaiquerios](https://www.google.com/search?q=https://github.com/kaiquerios)
+* **Kaique Rios** — [@kaiquerios](https://github.com/kaiquerios)
 
 ---
