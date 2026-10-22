@@ -1,4 +1,3 @@
-```markdown
 # ⚡ CloudArchitect AI
 
 > **Gerador Intuitivo de Arquiteturas para Nuvem AWS**  
