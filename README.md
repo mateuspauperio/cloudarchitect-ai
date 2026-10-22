@@ -1,57 +1,109 @@
-# CloudArchitect AI
+```markdown
+# ⚡ CloudArchitect AI
 
-Gerador intuitivo de arquiteturas para nuvem AWS. Você descreve os requisitos do projeto (ou escolhe um modelo pronto) e a aplicação mostra a arquitetura em etapas, explica por que cada serviço foi escolhido e entrega uma estimativa de custo e o código Terraform.
+> **Gerador Intuitivo de Arquiteturas para Nuvem AWS**  
+> Desenvolvido para o **DevFest**, em parceria com o **AWS Student Builder Group – SENAI CIMATEC**.
 
-Projeto desenvolvido para o **DevFest**, com o **AWS Student Builder Group – SENAI CIMATEC**.
+[![PHP](https://img.shields.io/badge/PHP-8.0%2B-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://www.php.net/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.0-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![AWS](https://img.shields.io/badge/AWS-CloudArchitect-FF9900?style=for-the-badge&logo=amazon-aws&logoColor=white)](https://aws.amazon.com/)
+[![Terraform](https://img.shields.io/badge/Terraform-IaC-7B42BC?style=for-the-badge&logo=terraform&logoColor=white)](https://www.terraform.io/)
 
-## Funcionalidades
+---
 
-- Fluxograma da arquitetura dividido em etapas (borda, ingestão, processamento, persistência)
-- Botão de info em cada serviço explicando **por que a ferramenta foi escolhida**
-- Custo estimado e score de conformidade (AWS Well-Architected)
-- Simulador de tráfego e escala que recalcula o custo
-- Código Terraform gerado, com botão de copiar
-- Dois modelos prontos: **IoT em tempo real** e **E-commerce serverless**
+## 📌 Sobre o Projeto
 
-## Prints
+O **CloudArchitect AI** é uma plataforma web criada para simplificar e acelerar o desenho de arquiteturas na nuvem AWS. A aplicação transforma requisitos de negócio em um pipeline visual estruturado por etapas, justificando cada ferramenta da *stack*, estimando custos e entregando o código **Terraform (IaC)** pronto para execução.
 
-![Modelo IoT](screenshot-iot.png)
-![Modelo E-commerce](screenshot-ecommerce.png)
+---
 
-## Como rodar
+## ✨ Funcionalidades Principais
 
-Requisito: PHP 8 ou superior.
+- 🚀 **Fluxograma em Pipeline (4 Etapas):** Visualização intuitiva organizada do tráfego (*Borda & Segurança* $\rightarrow$ *Ingestão & Mensageria* $\rightarrow$ *Processamento* $\rightarrow$ *Persistência & BI*).
+- 💡 **Explicabilidade Técnica (Botão Info):** Exposição detalhada em cada serviço do motivo da escolha da ferramenta no ecossistema AWS.
+- 🎯 **Conformidade Well-Architected:** Score percentual de boas práticas e checklist de pilares de segurança e compliance.
+- 💰 **Simulador Dinâmico de Custos:** Controle deslizante de escala de tráfego que recalcula a estimativa mensal em Dólares (US$) em tempo real.
+- 🛠️ **Infraestrutura como Código (IaC):** Geração automática de scripts Terraform (HCL) com botão de cópia em 1 clique.
+- 📋 **Modelos de Referência Prontos:** Atalhos rápidos para arquiteturas de *IoT Telemetria em Tempo Real* e *E-commerce Serverless*.
+- 🖥️ **Interface Responsiva & 0 Scroll:** Layout *widescreen* otimizado para apresentações sem poluição visual ou barras de rolagem desnecessárias.
 
-**Com o servidor embutido do PHP:**
+---
 
-```bash
-php -S localhost:8000
+## 📸 Demonstração da Interface
+
+| Modelo IoT em Tempo Real | Modelo E-commerce Serverless |
+| :---: | :---: |
+| ![Modelo IoT](screenshot-iot.png) | ![Modelo E-commerce](screenshot-ecommerce.png) |
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+* **Backend:** PHP 8+ (Lógica de roteamento, gestão de sessão e caching em JSON).
+* **Frontend:** Tailwind CSS & Font Awesome (via CDN para leveza e alta velocidade).
+* **Interatividade:** JavaScript Vanilla (manipulação de modais, simulador de escala e área de transferência).
+* **IaC:** HashiCorp Terraform HCL (código de infraestrutura pré-configurado).
+
+---
+
+## 🚀 Como Executar Localmente
+
+### Pré-requisitos
+- **PHP 8.0** ou superior instalado na máquina.
+
+### Opção 1: Servidor Embutido do PHP (Recomendado)
+
+1. Clone ou baixe este repositório:
+   ```bash
+   git clone [https://github.com/mateuspauperio/cloudarchitect-ai.git](https://github.com/mateuspauperio/cloudarchitect-ai.git)
+   cd cloudarchitect-ai
+
 ```
 
-Acesse http://localhost:8000.
+2. Inicie o servidor embutido do PHP:
+```bash
+php -S localhost:8000
 
-**Com XAMPP:** copie a pasta do projeto para `htdocs`, inicie o Apache e acesse `http://localhost/cloudarchitect/`.
+```
 
-A pasta `cache/` é criada automaticamente na primeira vez que uma arquitetura personalizada é gerada.
 
-## Tecnologias
+3. Acesse no seu navegador: `http://localhost:8000`
 
-- PHP (lógica do servidor, sessão e cache em JSON)
-- Tailwind CSS e Font Awesome (via CDN)
-- JavaScript puro (modais e simulador de escala)
-- Terraform (código de infraestrutura gerado)
+---
 
-## Limitações
+### Opção 2: Servidor Apache (XAMPP / WAMP / LARAGON)
 
-Este é um **protótipo**. Os dois modelos são arquiteturas pré-definidas. Para descrições livres, a aplicação gera uma arquitetura padrão simulada, com custo e score aleatórios, sem uso de IA real ou preços reais da AWS.
+1. Copie a pasta do projeto para o diretório `htdocs` do seu ambiente servidor (ex: `C:/xampp/htdocs/cloudarchitect`).
+2. Inicie o módulo Apache no painel do XAMPP.
+3. Acesse no navegador: `http://localhost/cloudarchitect/`
 
-## Próximos passos
+> **Nota:** A pasta `cache/` para armazenamento local das arquiteturas customizadas é criada automaticamente pelo servidor no primeiro uso.
 
-- Integrar um modelo de IA para gerar arquiteturas a partir do texto
-- Usar a API de preços da AWS para estimativas reais
-- Exportar o diagrama como imagem
+---
 
-## Autores
+## ⚠️ Limitações do Protótipo
 
-- Mateus Pauperio ([@mateuspauperio](https://github.com/mateuspauperio))
-- Kaique Rios
+> Esta aplicação é um **protótipo funcional** desenvolvido para apresentações e demonstrações técnicas.
+
+* Os modelos pré-definidos utilizam arquiteturas de referência estruturadas.
+* Para descrições em texto livre, o protótipo gera uma arquitetura simulada com custos e pontuações calculados via algoritmo local, sem conexão direta com chamadas pagas da API de Preços da AWS ou LLMs em tempo real.
+
+---
+
+## 🗺️ Próximos Passos (Roadmap)
+
+* [ ] Integração com modelo de IA generativa (LLM) para parser de texto em tempo real.
+* [ ] Conexão direta com a *AWS Price List API* para cálculo de custos atualizado em tempo real.
+* [ ] Exportação do diagrama da arquitetura em imagem (PNG/SVG) e PDF.
+* [ ] Suporte à exportação para AWS CloudFormation e AWS CDK.
+
+---
+
+## 👥 Autores
+
+Desenvolvido durante o **DevFest**:
+
+* **Mateus Pauperio** — [@mateuspauperio](https://github.com/mateuspauperio)
+* **Kaique Rios** — [@kaiquerios](https://www.google.com/search?q=https://github.com/kaiquerios)
+
+---
