@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CloudArchitect AI | Design Patterns Consultant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        sgb: {
+                            dark: '#080C14', surface: '#0F1624', card: '#161F33', border: '#222F47',
+                            orange: '#FF9900', cyan: '#00F0FF', navy: '#002B49'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body class="bg-sgb-dark text-slate-100 font-sans min-h-screen flex flex-col antialiased">
+
+    <!-- CABEÇALHO -->
+    <header class="bg-sgb-surface/90 border-b border-sgb-border shrink-0 py-3 px-6 sticky top-0 z-40 backdrop-blur-md">
+        <div class="w-full max-w-[1600px] mx-auto flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+                <div class="border-r border-sgb-border pr-4">
+                    <h1 class="text-lg font-black tracking-tight text-white leading-none">Cloud<span class="text-sgb-orange">Architect</span> <span class="text-sgb-cyan">AI</span></h1>
+                    <p class="text-[10px] text-slate-400 mt-1 font-mono uppercase tracking-widest">Consultor de System Patterns</p>
+                </div>
+            </div>
+            <div class="flex items-center space-x-3 text-xs font-semibold">
+                <span class="bg-sgb-card border border-sgb-border px-3 py-1.5 rounded-lg text-slate-400">
+                    <i class="fa-brands fa-aws text-sgb-orange mr-1"></i> AWS Guidance
+                </span>
+                <span class="bg-sgb-card border border-sgb-border px-3 py-1.5 rounded-lg text-slate-400">
+                    <i class="fa-solid fa-book text-emerald-500 mr-1"></i> GoF Patterns
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="w-full max-w-[1600px] mx-auto px-6 py-6 flex-grow grid grid-cols-12 gap-6">
+        
+        <!-- PAINEL DO CONSULTOR (Ocupa a largura toda) -->
+        <section class="col-span-12">
+            <div class="bg-sgb-card border-t-2 border-t-sgb-orange border border-sgb-border rounded-xl p-6 shadow-xl relative overflow-hidden">
+                <div class="absolute -right-10 -top-10 text-sgb-orange opacity-5 text-9xl">
+                    <i class="fa-solid fa-robot"></i>
+                </div>
+                
+                <div class="relative z-10 flex flex-col md:flex-row gap-6 items-center">
+                    <div class="flex-1 w-full space-y-3">
+                        <div class="flex items-center gap-2">
+                            <span class="bg-sgb-orange/20 text-sgb-orange p-1.5 rounded-md"><i class="fa-solid fa-wand-magic-sparkles"></i></span>
+                            <h2 class="font-black text-white text-lg">Consultoria Arquitetural</h2>
+                        </div>
+                        <p class="text-xs text-slate-400">Descreva o seu desafio ou problema de arquitetura. O consultor irá recomendar o **System Pattern** ideal e a arquitetura AWS para solucioná-lo.</p>
+                        
+                        <form id="consultForm" onsubmit="handleConsultation(event)" class="flex gap-3">
+                            <input type="text" id="consultPrompt" class="flex-1 bg-sgb-dark border border-sgb-border rounded-lg p-3 text-sm text-slate-100 placeholder-slate-500 focus:ring-1 focus:ring-sgb-orange outline-none transition-all" placeholder="Ex: Meu sistema envia XML antigo, mas a API nova só aceita JSON...">
+                            <button type="submit" class="bg-sgb-orange hover:bg-amber-500 text-slate-950 font-black px-6 rounded-lg text-sm transition-all shadow-md">
+                                Consultar
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- ÁREA DE RECOMENDAÇÃO (Escondida por padrão) -->
+                <div id="consultationResult" class="hidden mt-6 pt-6 border-t border-sgb-border">
+                    <h3 class="text-xs font-bold text-sgb-cyan uppercase tracking-wider mb-4"><i class="fa-solid fa-check-double mr-1"></i> Recomendação do Consultor</h3>
+                    <div id="recommendedPatternCard" class="bg-sgb-dark border border-sgb-cyan/30 rounded-xl p-5 shadow-[0_0_15px_rgba(0,240,255,0.1)]">
+                        <!-- Preenchido via JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SIDEBAR DE FILTROS (3 Colunas) -->
+        <aside class="col-span-3 space-y-4">
+            <div class="bg-sgb-card border border-sgb-border rounded-xl p-4 sticky top-24">
+                <h2 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4 pb-2 border-b border-sgb-border">Catálogo de Padrões</h2>
+                <nav id="categoryFilters" class="space-y-2">
+                    <!-- Gerado via JS -->
+                </nav>
+            </div>
+        </aside>
+
+        <!-- GRID DE PADRÕES (9 Colunas) -->
+        <section class="col-span-9 space-y-4">
+            <div id="patternsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Gerado via JS -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- MODAL (Mantido igual ao anterior) -->
+    <div id="patternModal" class="fixed inset-0 bg-sgb-dark/90 backdrop-blur-md hidden items-center justify-center p-4 z-50 transition-opacity">
+        <div class="bg-sgb-surface border border-sgb-border rounded-2xl max-w-4xl w-full flex flex-col max-h-[90vh] shadow-2xl relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-sgb-orange via-sgb-cyan to-indigo-500"></div>
+            
+            <div class="p-5 flex items-start justify-between border-b border-sgb-border">
+                <div class="flex items-center gap-4">
+                    <div id="modalIcon" class="h-12 w-12 rounded-xl bg-sgb-card border border-sgb-border flex items-center justify-center text-2xl text-sgb-cyan shadow-inner"></div>
+                    <div>
+                        <span id="modalCategory" class="text-[10px] font-mono font-bold text-sgb-orange bg-sgb-orange/10 px-2 py-0.5 rounded border border-sgb-orange/20 uppercase tracking-wider"></span>
+                        <h3 id="modalTitle" class="text-xl font-black text-white mt-1"></h3>
+                    </div>
+                </div>
+                <button onclick="closePatternModal()" class="text-slate-400 hover:text-white bg-sgb-card hover:bg-slate-700 h-8 w-8 rounded-lg border border-sgb-border flex items-center justify-center transition-colors">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <div class="p-6 overflow-y-auto space-y-6">
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                        <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-2"><i class="fa-solid fa-book-open"></i> O Problema Padrão</h4>
+                        <p id="modalProblem" class="text-sm text-slate-300 leading-relaxed"></p>
+                    </div>
+                    <div class="space-y-2">
+                        <h4 class="text-xs font-bold text-sgb-cyan uppercase tracking-wider flex items-center gap-2"><i class="fa-brands fa-aws"></i> Solução Cloud Nativa</h4>
+                        <p id="modalSolution" class="text-sm text-slate-300 leading-relaxed"></p>
+                    </div>
+                </div>
+
+                <div class="bg-sgb-dark border border-sgb-border rounded-xl p-4">
+                    <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4 text-center">Pipeline do Padrão</h4>
+                    <div id="modalServices" class="flex flex-wrap items-center justify-center gap-4"></div>
+                </div>
+
+                <div class="space-y-2">
+                    <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center justify-between">
+                        <span><i class="fa-solid fa-code text-sgb-orange"></i> Implementação Terraform</span>
+                    </h4>
+                    <pre id="modalTerraform" class="bg-sgb-dark p-4 rounded-xl border border-sgb-border text-emerald-400 text-xs font-mono overflow-x-auto"></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./assets/js/architectureData.js"></script>
+    <script src="./assets/js/app.js"></script>
+</body>
+</html>
